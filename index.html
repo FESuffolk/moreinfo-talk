@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>MoreIn.fo - The Automagical Link Shortener</title>
+
+		<meta name="description" content="A MoreIn.fo talk - The Automagical Link Shortener">
+		<meta name="author" content="Paul Hutson">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+				<section data-state="soothe">
+					<img src="images/MoreInFo-Logo.png"/>
+					<h3>The AutoMagical Link Shortener</h3>
+					<p>
+						<small>Presented By <a href="mailto:paul.hutson@defactosoftware.com">Paul Hutson</a> / <a href="http://twitter.com/PaulHutson">@PaulHutson</a></small>
+					</p>
+				</section>
+
+				<section data-state="soothe">
+                    <section>
+						<h2>Introduction</h2><br />
+						<p>
+							What is MoreIn.Fo?<br /><br />
+						</p>
+						<p class="fragment">
+							What I'm going to cover in this talk...:<br /><br />
+                            <ul class="fragment">
+                                <li>The Features Of the Site</li>
+                                <li>How it's made - the Software Architecture</li>
+                                <li>Responsive Design - Keeping Mobiles in Mind</li>
+                                <li>Analysing the Data - What sort of things are shared</li>
+                                <li>The Future</li>
+                            </ul>
+						</p>
+					</section>
+				</section>
+
+				<section data-state="soothe">
+					<section>
+						<h2>The Features Of the Site</h2><br />
+						<p class="fragment">
+							This one might be a suprise... it shortens URLs:<br />
+						</p>
+						<p class="fragment">
+							<small>http://www.ThisIsAReallyLongURL.com/WithALoad/OfExtraRouteItems?and=a&query=string</small><br /> <br />
+                            
+                            Which we can convert to a shorter link, i.e. <br /> <br />
+
+                            http://morein.fo/123
+						</p>
+					</section>
+					<section>
+						<h2>Account System</h2><br />
+						<p class="fragment">
+							Meaning you can save your URLs for access on any device.
+						</p>
+					</section>
+                    <section>
+						<h2>Vanity URLs</h2><br />
+						<p class="fragment">
+							Instead of<br /><br />
+                            
+                            http://morein.fo/123 <br /><br />
+                            
+                            we could have had <br /><br />
+                            
+                            http://morein.fo/Short
+						</p>
+					</section>
+                    <section>
+						<h2>Analytics Tracking</h2><br />
+						<p class="fragment">
+							Tracking the data about your clicks...
+						</p><br />
+                        <p class="fragment">
+							... you can also track individual clicks.
+						</p><br />
+                        <p  class="fragment">
+                            There is also an "aggregated" analytics view as well.
+                        </p>
+					</section>
+                    <section>
+						<h2>Easy Sharing...</h2><br />
+						<p class="fragment">
+							Through Social Media <br /><br />
+						</p>
+						<p class="fragment">
+                            And through using the bookmarklet and Chrome/Firefox Plugin's
+						</p>
+					</section>
+                    <section>
+						<h2>Grouped Data</h2><br />
+						<p>
+							You can automatically group links together to make using them easier... <br /><br />
+
+                            ... your data can also be tracked by #hashtag (which is used to identify the grouped data items).
+						</p>
+					</section>
+				</section>
+
+				<section data-state="soothe">
+					<section>
+						<h2>Software Architecture</h2>
+						<p>
+							<img src="images/MoreInFo-Network-Diagram.png"/>
+						</p>
+					</section>
+                    <section>
+						<h2>Database</h2><br />
+						<p class="fragment">
+                            Using SQL Server<br /><br />
+							Tables<br /><br />
+                            Stored Procs
+						</p>
+					</section>
+                    <section>
+						<h2>Web Services</h2><br />
+						<p class="fragment">
+							Webservices<br /><br />
+                            Returning JSON<br />
+						</p>
+					</section>
+                    <section>
+						<h2>Front End</h2><br />
+						<p class="fragment">
+							HTML<br /><br />
+                        </p>
+                        <p class="fragment">
+                            Link Copying:<br />
+                            
+                            - Flash<br />
+                            - Mobile Select / Copy
+                        </p><br />
+                        <p class="fragment">
+                            AJAX requests to the WebServices<br /><br />
+                        </p>
+                        <p class="fragment">
+                            "Less" generated style sheets<br /><br />
+						</p>
+                        <p class="fragment">
+                            Interestingly the top image area is actually created using shapes on top of a square image.
+                        </p>
+					</section>
+                    <section>
+						<h2>Bookmarklet</h2><br />
+						<p class="fragment">
+							Using a bookmark to store javascript...<br /><br />
+						</p>
+                        <p>
+                            <ol>
+                                <li class="fragment">When clicked it grabs the URL of the page...<br /></li>
+                                <li class="fragment">Then puts it into another URL...<br /></li>
+                                <li class="fragment">The new URL is loaded in a new window...<br /></li>
+                                <li class="fragment">On load MoreIn.Fo automatically shortens the link<br /></li>
+                            </ol>
+						</p>
+					</section>
+                    <section>
+						<h2>Browser Plugins</h2><br />
+						<p>
+							Like the bookmarklet the plugins also shorten the links...<br /><br />
+						</p>
+                        <p class="fragment">
+                            Plugins for both Firefox and Chrome.<br /><br />
+                        </p>
+                        <p class="fragment">
+                            Both are created using a mix of HTML and Javascript
+						</p>
+					</section>
+				</section>
+
+				<section data-state="soothe">
+					<section>
+						<h2>Responsive Design</h2><br />
+						<p class="fragment">
+							Using the @media tag to resize elements between several sizes on resize of a window... <br /><br />
+						</p>
+                        <p class="fragment">
+                            We had to make it work on both a desktop...<br /><br />
+                        </p>
+                        <p class="fragment">
+                            ... and on mobiles - without *any* feature loss.
+						</p>
+					</section>
+				</section>
+
+				<section data-state="soothe">
+					<section>
+						<h2>Analysing the Data</h2><br />
+						<p class="fragment">
+							Data is being collected ...<br /><br />
+						</p>
+                        <p class="fragment">
+                            When a link is created<br /><br />
+                        </p>
+                        <p class="fragment">
+                            When a link is clicked
+						</p>
+					</section>
+                    <section>
+						<h2>What Data?</h2><br />
+						<p>
+							Header Information from the client, i.e. browser, OS, etc...<br /><br />
+						</p>
+                        <p class="fragment">
+                            Also the IP of the request, for locational data.<br /><br />
+						</p>
+					</section>
+					<section>
+						<h2>Locational Click Data</h2><br />
+						<p>
+                            <img src="images/Location-Clicks.png"/>
+						</p>
+					</section>
+                    <section>
+						<h2>What is being shared?</h2><br />
+						<p>
+							Mostly...<br /><br />
+						</p>
+                        <p class="fragment">
+							Porn - yes, the internet is a filthy place...<br />
+                            <small class="fragment">Interestingly, lots of them are created late at night...</small><br /><br />
+						</p>
+                        <p class="fragment">
+							Quick Links for friends to find things...<br /><br />
+						</p>
+                        <p class="fragment">
+							Marketing Data, so that companies can properly track clicks.<br /><br />
+						</p>
+                        <p class="fragment">
+							Loads of other things!<br /><br />
+						</p>
+					</section>
+				</section>
+
+				<section data-state="soothe">
+					<h2>Future Enhancements</h2><br />
+					<ul>
+						<li class="fragment">API Data Access</li><br /><br />
+						<li class="fragment">Searching and Sorting Information</li><br /><br />
+						<li class="fragment">Trend Data</li>
+					</ul>
+				</section>
+
+				<section data-state="soothe">
+					<h2>Questions?</h2>
+				</section>
+
+				<section data-state="soothe">
+					<h1>THE END</h1><br />
+					<p><a href="http://morein.fo">MoreIn.Fo</a></p>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
